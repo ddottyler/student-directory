@@ -19,6 +19,7 @@ def input_students
   user_input = gets.chomp
   while !user_input.empty? do
     name, cohort = user_input.split(", ")
+    cohort = cohort.capitalize
     if name == ""
       puts "Please add a name or a default will be added"
       name = gets.chomp
@@ -40,7 +41,11 @@ def input_students
       cohort = months[cohort]
       students << {name: name, cohort: cohort}
     end
-    puts "Now we have #{students.count} students"
+    if students.count == 1
+      puts "Now we have #{students.count} student"
+    else
+      puts "Now we have #{students.count} students"
+    end
     user_input = gets.chomp
   end
     return students
@@ -81,9 +86,15 @@ def print(students)
 end
 
 def print_footer(names)
+  if names.count == 1
+    puts "Overall, we have #{names.count} great student.".center(50)
+  else
   puts "Overall, we have #{names.count} great students".center(50)
+  end
 end
 
 students = input_students
 print(students)
 print_footer(students)
+
+puts students
