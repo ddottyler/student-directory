@@ -1,5 +1,5 @@
 def input_students
-  months = {
+    months = {
     "January" => :January,
     "February" => :February,
     "March" => :March,
@@ -15,16 +15,12 @@ def input_students
 }
   puts "Please enter the names of the students and their cohort separated by a comma"
   puts "To finish, just hit return twice"
-  # create an empty array
   students = []
-  # get the first input
   user_input = gets.chomp
-  # while the user_input is not empty, repeat this code
   while !user_input.empty? do
-    #split the user_input into name and cohort
     name, cohort = user_input.split(", ")
     if name == ""
-      puts "Please add a name or a default will be added".center(50)
+      puts "Please add a name or a default will be added"
       name = gets.chomp
       if name == ""
         name = "John Doe"
@@ -32,7 +28,7 @@ def input_students
       cohort = months[cohort]
       students << {name: name, cohort: cohort}
     elsif cohort == nil
-      puts "Please add a cohort or a default will be provided".center(50)
+      puts "Please add a cohort or a default will be provided"
       month = gets.chomp.capitalize
       cohort = months[month]
       if cohort == nil
@@ -44,24 +40,44 @@ def input_students
       cohort = months[cohort]
       students << {name: name, cohort: cohort}
     end
-
-    puts "Now we have #{students.count} students".center(50)
-    # get another name from the user
+    puts "Now we have #{students.count} students"
     user_input = gets.chomp
   end
-    #return the array of students
-    students
+    return students
   end
-
-def print_header
-  puts "The students of Villains Academy".center(50)
-  puts "-------------".center(50)
-end
 
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} is joining #{student[:cohort]} cohort".center(50)
+  sorted_by_cohort = {}
+  students.each do |person|
+    cohort = person[:cohort]
+    name = person[:name]
+    if sorted_by_cohort[cohort] == nil
+      sorted_by_cohort[cohort] = []
+    end
+  sorted_by_cohort[cohort].push(name)
   end
+  puts "Which cohort do you want to look at?"
+  user_cohort = gets.chomp.capitalize
+  months = {
+    "January" => :January,
+    "February" => :February,
+    "March" => :March,
+    "April" => :April,
+    "May" => :May,
+    "June" => :June,
+    "July" => :July,
+    "August" => :August,
+    "September" => :September,
+    "October" => :October,
+    "November" => :November,
+    "December" => :December
+  }
+  cohort_pick = months[user_cohort]
+  puts "The students of Villains Academy".center(50)
+  puts "-------------".center(50)
+  sorted_by_cohort[cohort_pick].each do |student|
+      puts "#{student}".center(50)
+    end
 end
 
 def print_footer(names)
@@ -69,6 +85,5 @@ def print_footer(names)
 end
 
 students = input_students
-print_header
 print(students)
 print_footer(students)
