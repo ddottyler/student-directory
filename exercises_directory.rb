@@ -23,8 +23,18 @@ def print_header
 end
 
 def print(students)
-  students.each.with_index(1) do |name, index|
-    puts "#{index}. #{name[:name]}"
+  new_array = []
+  students.each do |student|
+    new_array << student[:name]
+  end
+  new_array.each do |element|
+    if element[0] == "H"
+      puts "#{element}"
+    elsif element[0] == "h"
+      puts "#{element}"
+    else
+      puts "Name not printable"
+    end
   end
 end
 
