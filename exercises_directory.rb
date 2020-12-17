@@ -16,13 +16,13 @@ def input_students
   puts "Please enter the names of the students and their cohort separated by a comma"
   puts "To finish, just hit return twice"
   students = []
-  user_input = gets.chomp
+  user_input = gets.chop
   while !user_input.empty? do
     name, cohort = user_input.split(", ")
     cohort = cohort.capitalize
     if name == ""
       puts "Please add a name or a default will be added"
-      name = gets.chomp
+      name = gets.chop
       if name == ""
         name = "John Doe"
       end
@@ -30,7 +30,7 @@ def input_students
       students << {name: name, cohort: cohort}
     elsif cohort == nil
       puts "Please add a cohort or a default will be provided"
-      month = gets.chomp.capitalize
+      month = gets.chop.capitalize
       cohort = months[month]
       if cohort == nil
         cohort = months["November"]
@@ -46,7 +46,7 @@ def input_students
     else
       puts "Now we have #{students.count} students"
     end
-    user_input = gets.chomp
+    user_input = gets.chop
   end
     return students
   end
@@ -62,7 +62,7 @@ def print(students)
   sorted_by_cohort[cohort].push(name)
   end
   puts "Which cohort do you want to look at?"
-  user_cohort = gets.chomp.capitalize
+  user_cohort = gets.chop.capitalize
   months = {
     "January" => :January,
     "February" => :February,
