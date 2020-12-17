@@ -23,17 +23,13 @@ def print_header
 end
 
 def print(students)
-  new_array = []
+  counter = students.length
+  until counter == 0
   students.each do |student|
-    new_array << student[:name]
+    counter -= 1
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
-  new_array.each do |element|
-    if element.length < 12
-      puts "#{element}"
-    else
-      puts "Name not printable"
-    end
-  end
+end
 end
 
 def print_footer(names)
