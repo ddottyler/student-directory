@@ -28,9 +28,7 @@ def print(students)
     new_array << student[:name]
   end
   new_array.each do |element|
-    if element[0] == "H"
-      puts "#{element}"
-    elsif element[0] == "h"
+    if element.length < 12
       puts "#{element}"
     else
       puts "Name not printable"
