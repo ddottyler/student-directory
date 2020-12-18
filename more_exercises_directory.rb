@@ -1,11 +1,13 @@
 @students = []
 
 def print_menu
-  puts "1. Input the students"
-  puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
-  puts "9. Exit"
+  puts
+  puts "1. Input the students".center(50)
+  puts "2. Show the students".center(50)
+  puts "3. Save the list to students.csv".center(50)
+  puts "4. Load the list from students.csv".center(50)
+  puts "9. Exit".center(50)
+  puts
 end
 
 def interactive_menu
@@ -18,17 +20,22 @@ end
 def process(selection)
   case selection
   when "1"
+    puts "Ok, please input_students".center(50)
     input_students
   when "2"
-    show_students
+    puts "Ok, here are the students".center(50)
+    output_students
   when "3"
+    puts "Ok, saving students".center(50)
     save_students
   when "4"
+    puts "Ok, loading students".center(50)
     load_students
   when "9"
+    puts "Ok, exiting program".center(50)
     exit #this will cause the program to terminate
   else
-    puts "I don't know what you meant, try again"
+    puts "I don't know what you meant, try again".center(50)
   end
 end
 
@@ -37,21 +44,21 @@ def add_to_students(name)
 end
 
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts "Please enter the names of the students".center(50)
+  puts "To finish, just hit return twice".center(50)
   # get the first name
   name = STDIN.gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
     add_to_students(name)
-    puts "Now we have #{@students.count} students"
+    puts "Now we have #{@students.count} students".center(50)
     # get another name from the user
     name = STDIN.gets.chomp
   end
   end
 
-def show_students
+def output_students
   print_header
   print_students_list
   print_footer
@@ -94,7 +101,7 @@ def load_students(filename = "students.csv")
 end
 
 def try_load_students
-  filename = "students.csv" #first argument from the command line
+  filename = "students.csv"
   return if filename.nil? #get out of the method if it isn't given
   if File.exists?(filename) #if it exists
     load_students(filename)
