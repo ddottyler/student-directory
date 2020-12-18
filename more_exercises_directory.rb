@@ -81,7 +81,9 @@ end
 
 def save_students
   #open the file for writing
-  file = File.open("students.csv", "w")
+  puts "Which file would you like to save the file to?"
+  filename = STDIN.gets.chomp
+  file = File.open(filename, "w")
   #iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -91,7 +93,9 @@ def save_students
   file.close
 end
 
-def load_students(filename = "students.csv")
+def load_students
+  puts "Which file would you like to load?"
+  filename = STDIN.gets.chomp
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
@@ -104,7 +108,7 @@ def try_load_students
   filename = "students.csv"
   return if filename.nil? #get out of the method if it isn't given
   if File.exists?(filename) #if it exists
-    load_students(filename)
+    load_students
     puts "Loaded #{@students.count} from #{filename}"
   else #if it doesn't exist
     puts "Sorry, #{filename} doesn't exist."
