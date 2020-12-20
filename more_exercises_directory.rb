@@ -80,28 +80,28 @@ def print_footer
 end
 
 def save_students
-  #open the file for writing
-  puts "Which file would you like to save the file to?"
+  puts "Which file would you like to save to?"
   filename = STDIN.gets.chomp
-  file = File.open(filename, "w")
+  #open the file for writing
+  File.open(filename, "w") do |file|
   #iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-  file.close
+end
 end
 
 def load_students
   puts "Which file would you like to load?"
   filename = STDIN.gets.chomp
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
-    add_to_students(name)
+  File.open(filename, "r") do |file|
+    file.each do |line|
+      name, cohort = line.chomp.split(',')
+      add_to_students(name)
+    end
   end
-  file.close
 end
 
 def try_load_students
